@@ -13,3 +13,8 @@ script:
   - cmake --build .
   - cmake --build . --target test
   - cmake --build . --target package
+deploy:
+  provider: script
+  skip_cleanup: true
+  script:
+    - curl -f -T cmake-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -usv-yarakaev:b695ae7ef3b638b8ef9f09d7bdf71ca2da9fc3c9 "https://api.bintray.com/content/sv-yarakaev/yarstas/homeyarstas/$TRAVIS_BUILD_NUMBER/cmake-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=xenial;deb_component=main;deb_architecture=amd64;publish=1"
